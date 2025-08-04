@@ -109,10 +109,10 @@ export default function CRM() {
       key: 'name',
       render: (_, record) => (
         <div className="flex items-center">
-          <UserOutlined className="mr-2 text-blue-500" />
+          <UserOutlined className="mr-2 text-blue-400" />
           <div>
-            <div className="font-medium">{`${record.firstName} ${record.lastName}`}</div>
-            {record.email && <div className="text-sm text-gray-500">{record.email}</div>}
+            <div className="font-medium text-gray-200">{`${record.firstName} ${record.lastName}`}</div>
+            {record.email && <div className="text-sm text-gray-400">{record.email}</div>}
           </div>
         </div>
       ),
@@ -132,8 +132,8 @@ export default function CRM() {
         const age = getAge(birthday)
         return (
           <div>
-            <div>{dayjs(birthday).format('MMM DD, YYYY')}</div>
-            {age && <div className="text-sm text-gray-500">Age: {age}</div>}
+            <div className="text-gray-200">{dayjs(birthday).format('MMM DD, YYYY')}</div>
+            {age && <div className="text-sm text-gray-400">Age: {age}</div>}
           </div>
         )
       },
@@ -147,7 +147,7 @@ export default function CRM() {
             type="text" 
             icon={<EditOutlined />} 
             onClick={() => handleEdit(record)}
-            className="text-blue-500"
+            className="text-blue-400 hover:text-blue-300"
           />
           <Popconfirm
             title="Are you sure you want to delete this person?"
@@ -158,7 +158,7 @@ export default function CRM() {
             <Button 
               type="text" 
               icon={<DeleteOutlined />} 
-              className="text-red-500"
+              className="text-red-400 hover:text-red-300"
             />
           </Popconfirm>
         </Space>
@@ -169,10 +169,10 @@ export default function CRM() {
   const upcomingBirthdays = getUpcomingBirthdays()
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-6">
+    <div className="max-w-7xl mx-auto p-6 space-y-6 bg-gray-900 min-h-screen">
       <div className="flex justify-between items-center">
-        <Title level={2} className="mb-0 flex items-center">
-          <UserOutlined className="mr-3 text-blue-500" />
+        <Title level={2} className="mb-0 flex items-center text-white">
+          <UserOutlined className="mr-3 text-blue-400" />
           CRM - People & Birthdays
         </Title>
         <Button 
@@ -180,17 +180,17 @@ export default function CRM() {
           icon={<PlusOutlined />} 
           onClick={handleAdd}
           size="large"
-          className="bg-blue-500 hover:bg-blue-600"
+          className="bg-blue-600 hover:bg-blue-700 border-blue-600"
         >
           Add Person
         </Button>
       </div>
 
       {upcomingBirthdays.length > 0 && (
-        <Card className="bg-yellow-50 border-yellow-200">
+        <Card className="bg-yellow-900 border-yellow-700">
           <div className="flex items-center mb-3">
-            <CalendarOutlined className="text-yellow-600 mr-2" />
-            <Title level={4} className="mb-0 text-yellow-800">Upcoming Birthdays (Next 30 Days)</Title>
+            <CalendarOutlined className="text-yellow-400 mr-2" />
+            <Title level={4} className="mb-0 text-yellow-200">Upcoming Birthdays (Next 30 Days)</Title>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {upcomingBirthdays.map(person => {
@@ -200,9 +200,9 @@ export default function CRM() {
               const daysUntil = nextBirthday.diff(today, 'day')
               
               return (
-                <div key={person._id} className="bg-white p-3 rounded border">
-                  <div className="font-medium">{`${person.firstName} ${person.lastName}`}</div>
-                  <div className="text-sm text-gray-600">
+                <div key={person._id} className="bg-gray-800 p-3 rounded border border-gray-700">
+                  <div className="font-medium text-white">{`${person.firstName} ${person.lastName}`}</div>
+                  <div className="text-sm text-gray-300">
                     {nextBirthday.format('MMM DD')} • {daysUntil === 0 ? 'Today!' : `${daysUntil} days`}
                   </div>
                 </div>
@@ -212,7 +212,7 @@ export default function CRM() {
         </Card>
       )}
 
-      <Card>
+      <Card className="bg-gray-800 border-gray-700">
         <Table
           columns={columns}
           dataSource={people}
@@ -224,7 +224,7 @@ export default function CRM() {
             showQuickJumper: true,
             showTotal: (total) => `Total ${total} people`,
           }}
-          className="w-full"
+          className="w-full [&_.ant-table]:bg-gray-800 [&_.ant-table-thead_.ant-table-cell]:bg-gray-700 [&_.ant-table-thead_.ant-table-cell]:text-gray-200 [&_.ant-table-tbody_.ant-table-cell]:bg-gray-800 [&_.ant-table-tbody_.ant-table-cell]:text-gray-200 [&_.ant-table-tbody_.ant-table-cell]:border-gray-700 [&_.ant-pagination]:text-gray-200 [&_.ant-pagination-item]:bg-gray-700 [&_.ant-pagination-item]:border-gray-600 [&_.ant-pagination-item>a]:text-gray-200 [&_.ant-pagination-item-active]:bg-blue-600 [&_.ant-pagination-item-active]:border-blue-600"
         />
       </Card>
 
@@ -234,12 +234,13 @@ export default function CRM() {
         onCancel={() => setModalVisible(false)}
         footer={null}
         width={600}
+        className="[&_.ant-modal-content]:bg-gray-800 [&_.ant-modal-header]:bg-gray-800 [&_.ant-modal-header]:border-gray-700 [&_.ant-modal-title]:text-gray-200 [&_.ant-modal-close]:text-gray-400"
       >
         <Form
           form={form}
           layout="vertical"
           onFinish={handleSubmit}
-          className="mt-4"
+          className="mt-4 [&_.ant-form-item-label>label]:text-gray-200 [&_.ant-input]:bg-gray-700 [&_.ant-input]:border-gray-600 [&_.ant-input]:text-gray-200 [&_.ant-input::placeholder]:text-gray-400 [&_.ant-picker]:bg-gray-700 [&_.ant-picker]:border-gray-600 [&_.ant-picker-input>input]:text-gray-200 [&_.ant-picker-input>input::placeholder]:text-gray-400"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Form.Item
@@ -287,14 +288,15 @@ export default function CRM() {
             <Input.TextArea 
               rows={3} 
               placeholder="Additional notes about this person..."
+              className="[&.ant-input]:bg-gray-700 [&.ant-input]:border-gray-600 [&.ant-input]:text-gray-200 [&.ant-input::placeholder]:text-gray-400"
             />
           </Form.Item>
 
           <div className="flex justify-end space-x-2 pt-4">
-            <Button onClick={() => setModalVisible(false)}>
+            <Button onClick={() => setModalVisible(false)} className="bg-gray-600 border-gray-600 text-gray-200 hover:bg-gray-500 hover:border-gray-500">
               Cancel
             </Button>
-            <Button type="primary" htmlType="submit" className="bg-blue-500 hover:bg-blue-600">
+            <Button type="primary" htmlType="submit" className="bg-blue-600 hover:bg-blue-700 border-blue-600">
               {editingPerson ? 'Update' : 'Add'} Person
             </Button>
           </div>
