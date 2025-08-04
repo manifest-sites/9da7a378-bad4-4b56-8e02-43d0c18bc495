@@ -15,3 +15,38 @@ body {
   min-height: 100vh;
   background-color: #111827;
 }
+
+/* Force all text to be white on dark background */
+* {
+  color: #ffffff !important;
+}
+
+/* Override Antd components that might have default text colors */
+.ant-typography {
+  color: #ffffff !important;
+}
+
+.ant-table-thead > tr > th {
+  color: #ffffff !important;
+}
+
+.ant-table-tbody > tr > td {
+  color: #ffffff !important;
+}
+
+.ant-pagination-item a {
+  color: #ffffff !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  color: #ffffff !important;
+}
+
+.ant-pagination-total-text {
+  color: #ffffff !important;
+}
+
+.ant-empty-description {
+  color: #ffffff !important;
+}
