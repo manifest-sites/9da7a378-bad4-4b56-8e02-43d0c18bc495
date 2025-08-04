@@ -111,8 +111,8 @@ export default function CRM() {
         <div className="flex items-center">
           <UserOutlined className="mr-2 text-blue-400" />
           <div>
-            <div className="font-medium text-gray-200">{`${record.firstName} ${record.lastName}`}</div>
-            {record.email && <div className="text-sm text-gray-400">{record.email}</div>}
+            <div className="font-medium text-white">{`${record.firstName} ${record.lastName}`}</div>
+            {record.email && <div className="text-sm text-gray-300">{record.email}</div>}
           </div>
         </div>
       ),
@@ -121,7 +121,7 @@ export default function CRM() {
       title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
-      render: (phone) => phone || '-',
+      render: (phone) => <span className="text-white">{phone || '-'}</span>,
     },
     {
       title: 'Birthday',
@@ -132,8 +132,8 @@ export default function CRM() {
         const age = getAge(birthday)
         return (
           <div>
-            <div className="text-gray-200">{dayjs(birthday).format('MMM DD, YYYY')}</div>
-            {age && <div className="text-sm text-gray-400">Age: {age}</div>}
+            <div className="text-white">{dayjs(birthday).format('MMM DD, YYYY')}</div>
+            {age && <div className="text-sm text-gray-300">Age: {age}</div>}
           </div>
         )
       },
@@ -224,7 +224,7 @@ export default function CRM() {
             showQuickJumper: true,
             showTotal: (total) => `Total ${total} people`,
           }}
-          className="w-full [&_.ant-table]:bg-gray-800 [&_.ant-table-thead_.ant-table-cell]:bg-gray-700 [&_.ant-table-thead_.ant-table-cell]:text-gray-200 [&_.ant-table-tbody_.ant-table-cell]:bg-gray-800 [&_.ant-table-tbody_.ant-table-cell]:text-gray-200 [&_.ant-table-tbody_.ant-table-cell]:border-gray-700 [&_.ant-pagination]:text-gray-200 [&_.ant-pagination-item]:bg-gray-700 [&_.ant-pagination-item]:border-gray-600 [&_.ant-pagination-item>a]:text-gray-200 [&_.ant-pagination-item-active]:bg-blue-600 [&_.ant-pagination-item-active]:border-blue-600"
+          className="w-full [&_.ant-table]:bg-gray-800 [&_.ant-table-thead_.ant-table-cell]:bg-gray-700 [&_.ant-table-thead_.ant-table-cell]:text-white [&_.ant-table-thead_.ant-table-cell]:font-semibold [&_.ant-table-tbody_.ant-table-cell]:bg-gray-800 [&_.ant-table-tbody_.ant-table-cell]:text-white [&_.ant-table-tbody_.ant-table-cell]:border-gray-600 [&_.ant-pagination]:text-white [&_.ant-pagination-item]:bg-gray-700 [&_.ant-pagination-item]:border-gray-600 [&_.ant-pagination-item>a]:text-white [&_.ant-pagination-item-active]:bg-blue-600 [&_.ant-pagination-item-active]:border-blue-600 [&_.ant-pagination-item:hover]:bg-gray-600 [&_.ant-pagination-item:hover]:border-gray-500"
         />
       </Card>
 
@@ -234,13 +234,13 @@ export default function CRM() {
         onCancel={() => setModalVisible(false)}
         footer={null}
         width={600}
-        className="[&_.ant-modal-content]:bg-gray-800 [&_.ant-modal-header]:bg-gray-800 [&_.ant-modal-header]:border-gray-700 [&_.ant-modal-title]:text-gray-200 [&_.ant-modal-close]:text-gray-400"
+        className="[&_.ant-modal-content]:bg-gray-800 [&_.ant-modal-header]:bg-gray-800 [&_.ant-modal-header]:border-gray-600 [&_.ant-modal-title]:text-white [&_.ant-modal-title]:font-semibold [&_.ant-modal-close]:text-gray-300 [&_.ant-modal-close:hover]:text-white"
       >
         <Form
           form={form}
           layout="vertical"
           onFinish={handleSubmit}
-          className="mt-4 [&_.ant-form-item-label>label]:text-gray-200 [&_.ant-input]:bg-gray-700 [&_.ant-input]:border-gray-600 [&_.ant-input]:text-gray-200 [&_.ant-input::placeholder]:text-gray-400 [&_.ant-picker]:bg-gray-700 [&_.ant-picker]:border-gray-600 [&_.ant-picker-input>input]:text-gray-200 [&_.ant-picker-input>input::placeholder]:text-gray-400"
+          className="mt-4 [&_.ant-form-item-label>label]:text-white [&_.ant-form-item-label>label]:font-medium [&_.ant-input]:bg-gray-700 [&_.ant-input]:border-gray-600 [&_.ant-input]:text-white [&_.ant-input::placeholder]:text-gray-300 [&_.ant-picker]:bg-gray-700 [&_.ant-picker]:border-gray-600 [&_.ant-picker-input>input]:text-white [&_.ant-picker-input>input::placeholder]:text-gray-300 [&_.ant-input:focus]:border-blue-500 [&_.ant-picker:focus]:border-blue-500"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Form.Item
@@ -288,12 +288,12 @@ export default function CRM() {
             <Input.TextArea 
               rows={3} 
               placeholder="Additional notes about this person..."
-              className="[&.ant-input]:bg-gray-700 [&.ant-input]:border-gray-600 [&.ant-input]:text-gray-200 [&.ant-input::placeholder]:text-gray-400"
+              className="[&.ant-input]:bg-gray-700 [&.ant-input]:border-gray-600 [&.ant-input]:text-white [&.ant-input::placeholder]:text-gray-300 [&.ant-input:focus]:border-blue-500"
             />
           </Form.Item>
 
           <div className="flex justify-end space-x-2 pt-4">
-            <Button onClick={() => setModalVisible(false)} className="bg-gray-600 border-gray-600 text-gray-200 hover:bg-gray-500 hover:border-gray-500">
+            <Button onClick={() => setModalVisible(false)} className="bg-gray-600 border-gray-600 text-white hover:bg-gray-500 hover:border-gray-500">
               Cancel
             </Button>
             <Button type="primary" htmlType="submit" className="bg-blue-600 hover:bg-blue-700 border-blue-600">
